@@ -41,11 +41,11 @@ if ($type == "inject") {
 
     if ($newdata != "") { $newdata = ereg_replace(13,  "", $newdata);
         $exec = "/bin/echo '$newdata' > $mod_path/includes/inject.txt";
-        exec("/usr/share/FruityWifi/bin/danger \"" . $exec . "\"", $output);
+        exec("/usr/share/BlackBulb/bin/danger \"" . $exec . "\"", $output);
     }
 
     $exec = "cat $mod_path/includes/inject.txt";
-    $dump = exec_fruitywifi($exec);
+    $dump = exec_blackbulb($exec);
 
     echo json_encode($dump);
 

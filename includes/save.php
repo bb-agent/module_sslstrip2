@@ -50,10 +50,10 @@ if ($type == "inject") {
 		//$newdata = ereg_replace(13,  "", $newdata); // DEPRECATED
         $newdata = preg_replace("/[\n\r]/",  "", $newdata);
 		$exec = "$bin_echo '$newdata' | base64 --decode > $mod_path/includes/inject.txt";
-        exec_fruitywifi($exec);
+        exec_blackbulb($exec);
         
         $exec = "$bin_dos2unix $mod_path/includes/inject.txt";
-        exec_fruitywifi($exec);
+        exec_blackbulb($exec);
     }
 
     header('Location: ../index.php?tab=2');
@@ -67,10 +67,10 @@ if ($type == "tamperer") {
 		//$newdata = ereg_replace(13,  "", $newdata); // DEPRECATED
         $newdata = preg_replace("/[\n\r]/",  "", $newdata);
 		$exec = "$bin_echo '$newdata' | base64 --decode > $mod_path/includes/app_cache_poison/config.ini";
-        exec_fruitywifi($exec);
+        exec_blackbulb($exec);
         
         $exec = "$bin_dos2unix $mod_path/includes/app_cache_poison/config.ini";
-        exec_fruitywifi($exec);
+        exec_blackbulb($exec);
     }
 
     header('Location: ../index.php?tab=3');
@@ -88,10 +88,10 @@ if ($type == "templates") {
 				$newdata = preg_replace("/[\n\r]/",  "", $newdata);
 				$template_path = "$mod_path/includes/app_cache_poison/templates";
         		$exec = "$bin_echo '$newdata' | base64 --decode > $template_path/$tempname";
-                exec_fruitywifi($exec);
+                exec_blackbulb($exec);
                 
                 $exec = "$bin_dos2unix $template_path/$tempname";
-                exec_fruitywifi($exec);
+                exec_blackbulb($exec);
                 
     		}
     	}
@@ -103,7 +103,7 @@ if ($type == "templates") {
 			if ($new_rename_file != "") {
 				$template_path = "$mod_path/includes/app_cache_poison/templates";
 				$exec = "$bin_touch $template_path/$new_rename_file";
-                exec_fruitywifi($exec);
+                exec_blackbulb($exec);
 
 				$tempname=$new_rename_file;
 			}
@@ -111,7 +111,7 @@ if ($type == "templates") {
 			//RENAME TEMPLATE
 			$template_path = "$mod_path/includes/app_cache_poison/templates";
 			$exec = "$bin_mv $template_path/$new_rename $template_path/$new_rename_file";
-            exec_fruitywifi($exec);
+            exec_blackbulb($exec);
 
 			$tempname=$new_rename_file;
 		}
@@ -121,7 +121,7 @@ if ($type == "templates") {
 			//DELETE TEMPLATE
 			$template_path = "$mod_path/includes/app_cache_poison/templates";
 			$exec = "$bin_rm $template_path/$new_rename";
-            exec_fruitywifi($exec);
+            exec_blackbulb($exec);
 		}
 	}
 	header("Location: ../index.php?tab=4&tempname=$tempname");
@@ -139,10 +139,10 @@ if ($type == "filters") {
 				$newdata = preg_replace("/[\n\r]/",  "", $newdata);
 				$template_path = "$mod_path/includes/filters/resources/";
         		$exec = "$bin_echo '$newdata' | base64 --decode > $template_path/$tempname";
-                exec_fruitywifi($exec);
+                exec_blackbulb($exec);
                 
                 $exec = "$bin_dos2unix $template_path/$tempname";
-                exec_fruitywifi($exec);
+                exec_blackbulb($exec);
     		}
     	}
     	
@@ -153,17 +153,17 @@ if ($type == "filters") {
 
 if($mod_service == "mod_sslstrip_inject") {
     $exec = "$bin_sed -i 's/mod_sslstrip_inject=.*/mod_sslstrip_inject=".$mod_action.";/g' ../_info_.php";
-    exec_fruitywifi($exec);
+    exec_blackbulb($exec);
 }
 
 if($mod_service == "mod_sslstrip_tamperer") {
     $exec = "$bin_sed -i 's/mod_sslstrip_tamperer=.*/mod_sslstrip_tamperer=".$mod_action.";/g' ../_info_.php";
-    exec_fruitywifi($exec);
+    exec_blackbulb($exec);
 }
 
 if($mod_service == "mod_sslstrip_filter") {
     $exec = "$bin_sed -i 's/mod_sslstrip_filter=.*/mod_sslstrip_filter=\\\"".$mod_action."\\\";/g' ../_info_.php";
-    exec_fruitywifi($exec);
+    exec_blackbulb($exec);
 }
 
 header('Location: ../index.php');

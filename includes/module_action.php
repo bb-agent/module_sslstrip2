@@ -39,23 +39,23 @@ if($service != "") {
     if ($action == "start") {
         // COPY LOG
         $exec = "$bin_cp $mod_logs $mod_path/includes/logs/$mod_name-".gmdate("Ymd-H-i-s").".log";
-		exec_fruitywifi($exec);
+		exec_blackbulb($exec);
         
         $exec = "$bin_iptables -t nat -A PREROUTING -p tcp --destination-port 80 -j REDIRECT --to-port 10000";
-		exec_fruitywifi($exec);
+		exec_blackbulb($exec);
         
         $exec = "$bin_sslstrip -a -s -l 10000 -w $mod_logs > /dev/null 2 &";
-		exec_fruitywifi($exec);
+		exec_blackbulb($exec);
 	
     } else if($action == "stop") {
     	$exec = "$bin_iptables -t nat -D PREROUTING -p tcp --destination-port 80 -j REDIRECT --to-port 10000";
-		exec_fruitywifi($exec);
+		exec_blackbulb($exec);
 		
-		$exec = "ps aux|grep -E 'fruitywifi.+sslstrip2.+sslstrip' | grep -v grep | awk '{print $2}'";
+		$exec = "ps aux|grep -E 'blackbulb.+sslstrip2.+sslstrip' | grep -v grep | awk '{print $2}'";
 		exec($exec,$output);
 		
 		$exec = "kill " . $output[0];
-		exec_fruitywifi($exec);
+		exec_blackbulb($exec);
     }
 }
 
@@ -63,10 +63,10 @@ if($service != "") {
 if ($install == "install_$mod_name") {
 
     $exec = "chmod 755 install.sh";
-    exec_fruitywifi($exec);
+    exec_blackbulb($exec);
 
     $exec = "$bin_sudo ./install.sh > $log_path/install.txt &";
-    exec_fruitywifi($exec);
+    exec_blackbulb($exec);
     
     header("Location: ../../install.php?module=$mod_name");
     exit;

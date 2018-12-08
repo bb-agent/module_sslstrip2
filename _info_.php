@@ -1,14 +1,14 @@
 <?php
 $mod_name="sslstrip2";
 $mod_version="1.1";
-$mod_path="/usr/share/fruitywifi/www/modules/$mod_name";
+$mod_path="/usr/share/blackbulb/www/modules/$mod_name";
 $mod_logs="$log_path/$mod_name.log"; 
 $mod_logs_history="$mod_path/includes/logs/";
 $mod_sslstrip_inject=0;
 $mod_sslstrip_tamperer=0;
 $mod_sslstrip_filter="";
 $mod_panel="show";
-$mod_isup="ps aux|grep -E 'fruitywifi.+sslstrip2.+sslstrip' | grep -v grep | awk '{print $2}'";
+$mod_isup="ps aux|grep -E 'blackbulb.+sslstrip2.+sslstrip' | grep -v grep | awk '{print $2}'";
 $mod_alias="SSLstrip2";
 
 # EXEC
